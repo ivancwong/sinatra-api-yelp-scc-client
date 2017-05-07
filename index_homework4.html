@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html manifest="local.manifest" lang="en">
+
+<!--
+<html lang="en">
+-->
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>ABC Toys</title>
+	<!--
+	Unlike old versions of jQuery Mobile, the latest version 1.4 has only two themes/swatches a and b. The latter is dark/black theme.
+	Use classic style sheet offered by jQuery Mobile, along with default style sheet.
+	-->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
+	<link rel="stylesheet" href="http://demos.jquerymobile.com/1.4.0/theme-classic/theme-classic.css" />
+
+	<!--
+	Get Geolocation of the user and calcuate the route
+	-->
+	<script src="http://maps.google.com/maps/api/js?sensor=true&key=AIzaSyAE4IO1LkPS2qgga7gJSNCr23pR1pAsVtA" > </script>
+
+	<script src="js/clientui.js"></script>
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+<!-- Start of Home page -->
+<div data-role="page" id="Home" data-theme="c">
+	<div data-role="header" data-position="fixed" data-theme="a">
+		<h1>ABC Toys</h1>
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#Products" data-transition="flip" class="ui-btn-active ui-state-persist" data-icon="shop" data-theme="b">Products</a></li>
+				<li><a href="#Contact_us" data-transition="flip" data-icon="mail" data-theme="b">Contact Us</a></li>
+				<li><a href="#Location" data-transition="flip" data-icon="location" data-theme="b">Location</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<div data-role="content">
+		<h1>ABC Toys</h1>
+		<h3>Making learning fun</h3>
+		<p>ABC Toys is a company that opened its doors in 2001 and it has kept its mission for all those years.</p>
+		<p>The mission of our company is to create toys that are safe for kindergarten kids but that challenge the kids' mind and motor skills making learning a fun task.</p>
+		<p>By the way, parents love our toys too</p>
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="a">
+		<h4>More about ABC Toys</h4>
+	</div><!-- /footer -->
+</div>
+<!-- End of Home page -->
+
+
+<!-- Start of Products page -->
+<div data-role="page" id="Products" data-theme="c">
+
+	<div data-role="header" data-position="fixed" data-theme="a">
+		<h1>ABC Toys Products</h1>
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#Home" data-transition="flip" class="ui-btn-active ui-state-persist" data-icon="home" data-theme="b">Home</a></li>
+				<li><a href="#Contact_us" data-transition="flip" data-icon="mail" data-theme="b">Contact Us</a></li>
+				<li><a href="#Location" data-transition="flip" data-icon="location" data-theme="b">Location</a></li>
+			</ul>
+		</nav>
+	</div><!-- /header -->
+
+	<div data-role="content" data-theme="c">
+	  <div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="b">
+		  <!-- Our Toy -->
+		  <h3>Our Toys</h3>
+		      <!-- Toy 1 R2-D2 -->
+			  <div data-role="collapsible" data-theme="e" data-content-theme="e" data-collapsed-icon="info">
+			  <h3>R2-D2</h3>
+				  <!-- grid-a -->
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" style="width:50%">
+						<div class="ui-bar" style="height:20%">
+							<img src="img/r2-d2.png" alt="Image of R2-D2" style="max-width: 100%;max-height: 100%;"
+							      class="float-left"/>
+						</div>
+					</div>
+                    <div class="ui-block-b" style="width:50%">
+						<div class="ui-bar" style="height:20%">
+							<b>R2-D2 Talking Figure - 10 1/2'' - Star Wars Official Disney Store</b>
+							<br>
+							<br>
+
+							The devoted astromech droid makes a handsome addition to any Star Wars collection. With two modes of activation,
+							this R2 unit is ready to beep, squeak, spin and roll his way into new adventures.
+						</div>
+					</div>
+                </div><!-- /grid-a -->
+			  </div><!-- /Toy 1 R2-D2 -->
+
+			  <!-- Toy 2 Darth Vade -->
+			  <div data-role="collapsible" data-theme="e" data-content-theme="e" data-collapsed-icon="info">
+			  <h3>Darth Vader</h3>
+				  <!-- grid-a -->
+				  <div class="ui-grid-a">
+					  <div class="ui-block-a" style="width:50%">
+						  <div class="ui-bar" style="height:20%">
+							  <img src="img/darth.png" alt="Image of Darth Vader" style="max-width: 100%;max-height: 100%;"
+								   class="float-left"/>
+						  </div>
+					  </div>
+					  <div class="ui-block-b" style="width:50%">
+						  <div class="ui-bar" style="height:20%">
+							  <b>Thinkway 6E72E81C Star Wars: Episode VII The Force Awakens - Darth Vader!!! Animatronic Interactive Figure</b>
+							  <br>
+							  <br>
+
+							  This deluxe animatronic figure is produced based on digital data from Star Wars: Episode VI Return Of The Jedi.
+							  This Dark Lord's highly interactive Lightsaber is powered by new dynamic technology. Hold the Lightsaber and wave
+							  it for incredible real time interaction with light and stereo battle sound effects! Raise his left arm and watch
+							  him come alive with voice and animated actions! INTERACTIVE TRAINING/BATTLE MODES Press his chest panel button to
+							  activate Battle or Training mode. Wave the Lightsaber for awesome light & stereo battle sound effects!
+							  When you are ready to train with the Dark Lord, press his chest panel button then quickly hold his right hand and
+							  make different Lightsaber moves. The Lightsaber will illuminate with amazing sound effects! Darth Vader will know
+							  how you move the Lightsaber and coach you to join him on the dark side. TALK MODE - Raise left arm for original voice
+							  with motorized head, arm and waist actions!
+						  </div>
+					  </div>
+				  </div><!-- /grid-a -->
+			  </div><!-- /Toy 2 Darth Vade -->
+
+			  <!-- Toy 3 Star Wars Galactic Heroes -->
+			  <div data-role="collapsible" data-theme="e" data-content-theme="e" data-collapsed-icon="info">
+				  <h3>Star Wars Galactic Heroes</h3>
+				  <!-- grid-a  -->
+				  <div class="ui-grid-a">
+					  <div class="ui-block-a" style="width:50%">
+						  <div class="ui-bar" style="height:20%">
+							  <img src="img/galatic.png" alt="Image of Galatic" style="max-width: 100%;max-height: 100%;"
+								   class="float-left"/>
+						  </div>
+					  </div>
+					  <div class="ui-block-b" style="width:50%">
+						  <div class="ui-bar" style="height:20%">
+							  <b>Star Wars Galactic Heroes Millennium Falcon</b>
+							  <br>
+							  <br>
+
+							  The Millennium Falcon has flown countless quests for the Rebellion, and she's ready to go head-to-head with
+							  the Empire. Young Jedi can have big fun pretending to battle the Empire with the help of the Millennium
+							  Falcon's crew - Han Solo, Chewbacca, and R2-D2. Fun features include a push-activated blaster cannon,
+							  sensor dish, and ladder. This vehicle playset includes three figures, Han Solo, Chewbacca, and R2-D2.
+						  </div>
+					  </div>
+				  </div><!-- /grid-a -->
+			  </div><!-- /Toy 3  Star Wars Galactic Heroes -->
+
+			  <!-- Toy 4 Light Up Space Sword -->
+			  <div data-role="collapsible" data-theme="e" data-content-theme="e" data-collapsed-icon="info">
+				  <h3>Light Up Space Sword</h3>
+				  <!-- grid-a  -->
+				  <div class="ui-grid-a">
+					  <div class="ui-block-a" style="width:50%">
+						  <div class="ui-bar" style="height:20%">
+							  <img src="img/sword.png" alt="Image of Space Swords" style="max-width: 100%;max-height: 100%;"
+								   class="float-left"/>
+
+						  </div>
+					  </div>
+					  <div class="ui-block-b" style="width:50%">
+						  <div class="ui-bar" style="height:20%">
+							  <b>Light Up Space Swords</b>
+							  <br>
+							  <br>
+
+							  LIGHT UP SPACE SWORDS. Press the button to see a steady, powerful glow. 2 "AA" batteries included. Assorted colors.
+							  Each polybagged with header.
+						  </div>
+					  </div>
+				  </div><!-- /grid-a -->
+			  </div><!-- /Toy 4 Light Up Space Sword -->
+
+			  <!-- Toy 5 Star Wars Deluxe BB-8 Action Figure 18  -->
+			  <div data-role="collapsible" data-theme="e" data-content-theme="e" data-collapsed-icon="info">
+				  <h3>Star Wars Deluxe BB-8 Action Figure 18</h3>
+				  <!-- grid-a  -->
+				  <div class="ui-grid-a">
+					  <div class="ui-block-a" style="width:50%">
+						  <div class="ui-bar" style="height:20%">
+							  <img src="img/bb-8.png" alt="Image of BB-8" style="max-width: 100%;max-height: 100%;"
+								   class="float-left"/>
+						  </div>
+					  </div>
+					  <div class="ui-block-b" style="width:50%">
+						  <div class="ui-bar" style="height:20%">
+							  <b>Star Wars Deluxe BB-8 Action Figure 18</b>
+							  <br>
+							  <br>
+
+							  Star Wars: TFA 18-Inch BB-8 Deluxe Big Fig Action Figure Jakks Pacific Star Wars Action Figures Need a helper
+							  droid? BB-8 action figure stands 18-inches tall! Features lights, sounds, and a swiveling head. A hidden trap
+							  door reveals a spring-loaded arm! The Star Wars: The Force Awakens 18-Inch BB-8 Deluxe Big Fig Action Figure features
+							  lights and sounds, a swiveling head, and a hidden trap door that reveals a spring-loaded arm! BB-8 stands 18-inches
+							  tall, appropriately sized for Jakks Pacific 31-inch scale line (sold separately). Requires 3x "AA" batteries, included.
+							  Ages 3 and up.
+						  </div>
+					  </div>
+				  </div><!-- /grid-a -->
+			  </div><!-- /Toy 5 Star Wars Deluxe BB-8 Action Figure 18 -->
+	  </div> <!-- /Our Toy -->
+	</div><!-- /content -->
+	<div data-role="footer" data-position="fixed" data-theme="a">
+		<h4>More about ABC Toys</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+<!-- End of Products page -->
+
+<!-- Start of Location page -->
+<div data-role="page" id="Location" data-theme="c">
+	<header data-role="header" data-position="fixed" data-theme="a">
+		<h1>ABC Toys</h1>
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#Home" data-transition="flip" class="ui-btn-active ui-state-persist" data-icon="home" data-theme="b">Home</a></li>
+				<li><a href="#Products" data-transition="flip" data-icon="shop" data-theme="b">Products</a></li>
+				<li><a href="#Contact_us" data-transition="flip" data-icon="mail" data-theme="b">Contact Us</a></li>
+
+			</ul>
+		</nav>
+	</header>
+
+	<div data-role="content">
+		<h1>ABC Toys</h1>
+		<h3>Making learning fun</h3>
+		<p>1501 Haight Street</p>
+		<p>San Francisco, CA 94117</p>
+		<p>Email: info@abctoys.com</p>
+		<p>Tel: 415-330-0000</p>
+		<p>https://www.facebook.com/ABCToys</p>
+
+		<form id="calculate-route" name="calculate-route" action="#" method="get">
+			<!--  Set the travel mode -->
+			<div id="floating-panel">
+				<b>Mode of Travel</b>
+				<select id="mode">
+					<option value="DRIVING">Driving</option>
+					<option value="WALKING">Walking</option>
+					<option value="BICYCLING">Bicycling</option>
+					<option value="TRANSIT">Transit</option>
+				</select>
+			</div>
+
+			<!-- Set From Geolocation -->
+			<label for="from">From:</label>
+			<input type="text" id="from" name="from" required="required" placeholder="An address" size="50" />
+			<a id="from-link" href="#">Get my position</a>
+			<br />
+
+			<!--  current latitude and longitude of the user – using the Geolocation -->
+			<div id="geoUserlocation" >
+				You are at Latitude: _________, Longitude: _________
+			</div>
+
+			<input type="submit" value="Route to our Haight-Ashbury Store"/>
+			<input type="reset" value="Reset"/>
+
+		</form>
+		<div id="map"></div>
+		<p id="error"></p>
+
+
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="a">
+		<h4>More about ABC Toys</h4>
+	</div><!-- /footer -->
+</div>
+<!-- End of Location page -->
+
+<!-- Start of Contact Us page -->
+<div data-role="page" id="Contact_us" data-theme="c">
+	<header data-role="header" data-position="fixed" data-theme="a">
+		<h1>ABC Toys</h1>
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#Home" data-transition="flip" class="ui-btn-active ui-state-persist" data-icon="home" data-theme="b">Home</a></li>
+				<li><a href="#Products" data-transition="flip" data-icon="shop" data-theme="b">Products</a></li>
+				<li><a href="#Location" data-transition="flip" data-icon="location" data-theme="b">Location</a></li>
+
+			</ul>
+		</nav>
+	</header>
+
+	<div data-role="content">
+		<h1>ABC Toys</h1>
+		<p>1501 Haight Street</p>
+		<p>San Francisco, CA 94117</p>
+		<p>Email: info@abctoys.com</p>
+		<p>Tel: 415-330-0000</p>
+		<p>https://www.facebook.com/ABCToys</p>
+	</div>
+
+	<div data-role="content">
+		<form method="get" action="#">
+			<fieldset class="ui-field-contain">
+				<label for="name">Name:</label>
+				<input type="text" name="name" id="name" value="" placeholder="Your Name"/>
+				<label for="email">Email: </label>
+				<input type="email" name="email" id="email" value="" placeholder="Your Email"/>
+			</fieldset>
+			<div class="ui-field-contain">
+				<label for="comment">Comment</label>
+				<textarea id="comment"></textarea>
+			</div>
+			<input type="submit" value="Submit" />
+		</form>
+	</div>
+	<div data-role="footer" data-position="fixed" data-theme="a">
+		<h4>More about ABC Toys</h4>
+	</div><!-- /footer -->
+</div>
+<!-- End of Contact Us page -->
+
+</body>
+</html>

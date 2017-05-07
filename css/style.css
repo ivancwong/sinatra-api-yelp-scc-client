@@ -1,0 +1,9 @@
+#geoUserlocation {
+    margin-bottom: 30px;
+}
+
+#map {
+    width: 500px;
+    height: 400px;
+    margin-top: 10px;
+}
