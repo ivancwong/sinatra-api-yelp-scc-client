@@ -10,8 +10,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
 	<!--
 	Original code using the new library
 	-->
@@ -118,6 +116,7 @@
 			Tabulator
 		-->
 		<h3 id="displayYelpID"></h3>
+		<h3 id="displayYelpName"></h3>
 
 		<div id="example-table"></div>
 	</div>
@@ -452,16 +451,29 @@
         $("#example-table").tabulator({
             height:"80%",
             fitColumns:true,
+			// groupBy:"sentiment",
             movableCols:true,
             movableRows:true,
+            pagination:"local",
+            paginationSize:7,
+            //responsiveLayout:true,
             //movableRowHandle: "<div style='height:5%; width:10px; '></div>", //custom handle html
             tooltips:true,
             columns:[
-                {title:"Yelp ID", field:"yelp_id", sorter:"string", editable:true},
-                {title:"Yelp User Name", field:"yelp_user_name", sorter:"string", editable:true},
-                {title:"Yelp User Image url", field:"yelp_user_image_url", formatter:"file"},
-                {title:"Rating", field:"rating", formatter:"star", align:"center", sorter:"number", width:100, editable:true},
-                {title:"Review", field:"text", sorter:"string", editable:true},
+                {title:"Image", field:"yelp_user_image_url", responsive:0, formatter:"file"},
+                {title:"Name", field:"yelp_user_name", responsive:0, sorter:"string", editable:false},
+                {title:"Rating", field:"rating", responsive:0, formatter:"star", align:"center", sorter:"number", width:100, editable:false},
+                {title:"Review", field:"text", responsive:0, sorter:"string", formatter:"textarea", editable:false},
+                {title:"Date", field:"review_created_at", responsive:0, width:130, sorter:"date", align:"center"},
+                {title:"Gender", field:"vision_gender", responsive:1,  sorter:"string", align:"center"},
+                {title:"Age", field:"vision_age", responsive:1, sorter:"number", align:"center"},
+                {title:"Description", field:"vision_description_captions", responsive:3,  sorter:"string", formatter:"textarea", editable:false},
+                {title:"Confidence", field:"vision_description_captions_confidence", responsive:3, sorter:"number", align:"center"},
+                {title:"Emotion", field:"emotion", responsive:3, sorter:"string", align:"center"},
+                {title:"Scores", field:"emotion_scores", responsive:3, sorter:"number", align:"center"},
+                {title:"Sentiment", field:"sentiment", responsive:2, sorter:"string", align:"center"},
+                {title:"Scores", field:"sentiment_scores", responsive:2, sorter:"number", align:"center"},
+
 
 				/*
 				 {title:"Task Progress", field:"progress", sorter:"number", align:"left", formatter:"progress", editable:true},
@@ -495,12 +507,13 @@
             // Load Selected Business data immediately
             $.ajax({
                 // url: 'http://localhost:9292/businesses_by_yelp_id/' + selectedYelpID,
-                url: 'https://intense-ravine-90606.herokuapp.com//businesses_by_yelp_id/' + selectedYelpID,
+                url: 'https://intense-ravine-90606.herokuapp.com/businesses_by_yelp_id/' + selectedYelpID,
 
                 method: 'GET'
             }).done(function (data) {
                 data.forEach(function (d) {
-                    document.getElementById("displayYelpID").innerHTML = "Business ID: " + d.yelp_id + "   XXX      Business Name: " + d.yelp_name;
+                    document.getElementById("displayYelpID").innerHTML = "Business ID: " + d.yelp_id;
+                    document.getElementById("displayYelpName").innerHTML = "Business Name: " + d.yelp_name;
 
                     console.log(data.yelp_id);
 
@@ -510,6 +523,12 @@
 
 
             $("#example-table").tabulator("setData", url);
+
+            $("#hide-trigger").click(function() {
+                $("#example-table").tabulator("toggleCol", "yelp_user_name") ////toggle the visibility of the "name" column
+            });
+
+
 
 			/*
 			 $("#example-table").tabulator("setData", url, {key1:"yelp_id", key2:"yelp_name",
