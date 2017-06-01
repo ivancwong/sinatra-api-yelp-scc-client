@@ -15,6 +15,7 @@
 	-->
 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<title>ABC Toys</title>
@@ -26,6 +27,8 @@
 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
 	<link rel="stylesheet" href="http://demos.jquerymobile.com/1.4.0/theme-classic/theme-classic.css" />
+
+
 
 
 
@@ -57,6 +60,38 @@
 		}
 	</style>
 
+	<!--
+	============  Bootstrap Carousel ===============
+	-->
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!--
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	-->
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		.carousel-inner > .item > img,
+		.carousel-inner > .item > a > img {
+			width: 50%;
+			margin: auto;
+		}
+	</style>
+
+
+	<style>
+		table, td {
+			border: 1px solid black;
+		}
+	</style>
+
+
+	<--
+	=============== End Bootstrap Carousel  ===========
+	-->
+
+
 
     </head>
 
@@ -71,6 +106,7 @@
 				<li><a href="#Contact_us" data-transition="flip" data-icon="mail" data-theme="b">Contact Us</a></li>
 				<li><a href="#Location" data-transition="flip" data-icon="location" data-theme="b">Location</a></li>
 				<li><a href="#Yelp" data-transition="flip" data-icon="comment" data-theme="b">Yelp</a></li>
+				<li><a href="#Yelp_mobile" data-transition="flip" data-icon="comment" data-theme="b">Yelp Mobile</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -127,6 +163,93 @@
 	</div><!-- /footer -->
 </div>
 <!-- End of Yelp page -->
+
+
+	<!-- Start of Yelp Mobile page -->
+	<div data-role="page" id="Yelp_mobile" data-theme="c">
+		<div data-role="header" data-position="fixed" data-theme="a">
+			<h1>Yelp</h1>
+			<nav data-role="navbar">
+				<ul>
+					<li><a href="#Products" data-transition="flip" class="ui-btn-active ui-state-persist" data-icon="shop" data-theme="b">Products</a></li>
+					<li><a href="#Contact_us" data-transition="flip" data-icon="mail" data-theme="b">Contact Us</a></li>
+					<li><a href="#Location" data-transition="flip" data-icon="location" data-theme="b">Location</a></li>
+				</ul>
+			</nav>
+		</div>
+
+
+		<div data-role="content" data-theme="c">
+			<form>
+				<div class="ui-field-contain">
+					<label for="select-native-2">Business:</label>
+					<select name="select-native-2" id="select-native-2">
+					</select>
+				</div>
+			</form>
+
+
+			<h3 id="displayYelpIDMobile"></h3>
+			<h3 id="displayYelpNameMobile"></h3>
+
+			<!--
+                Bootstrap Carousel
+            -->
+
+			<div class="container">
+				<!--
+				<h2>Activate Carousel with JavaScript</h2>
+				-->
+
+				<div id="myCarousel" class="carousel slide" >
+					<!-- Indicators -->
+					<ol id="carouselIndicators" class="carousel-indicators">
+					</ol>
+
+					<!-- Wrapper for slides -->
+					<div id="carouselInner" class="carousel-inner" role="listbox">
+					</div>
+
+					<!-- Left and right controls -->
+					<a class="left carousel-control" href="#myCarousel" role="button">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#myCarousel" role="button">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+
+
+			<div>
+
+				<p></p>
+				<p></p>
+				<p ID="displayText"></p>
+				<p ID="displayTable"></p>
+				<div id="displayTableBox">
+				</div>
+
+
+			</div>
+
+
+
+			<!--
+                End Bootstrap Carousel
+            -->
+
+
+		</div>
+
+
+		<div data-role="footer" data-position="fixed" data-theme="a">
+			<h4>More about ABC Toys</h4>
+		</div><!-- /footer -->
+	</div>
+	<!-- End of Yelp Mobile page -->
 
 
 
@@ -425,8 +548,40 @@
             });
 
 
+
             document.getElementById('select-native-1').addEventListener('change', function() {
                 refreshBusinessReviews();
+            });
+
+			/*
+			 Yelp Mobile = Native-2
+			 */
+
+            // Load ALL Business data immediately
+            $.ajax({
+                // url: 'http://localhost:9292/businesses',
+                url: 'https://intense-ravine-90606.herokuapp.com/businesses',
+
+                method: 'GET'
+            }).done(function (data) {
+                var x = document.getElementById("select-native-2");
+                var option = document.createElement("option");
+                option.text = "Select Business...";
+                option.value = "1";
+                x.add(option);
+                data.forEach(function (d) {
+                    var x = document.getElementById("select-native-2");
+                    var option = document.createElement("option");
+                    option.text = d.yelp_id;
+                    option.value = d.yelp_id;
+                    x.add(option);
+                    console.log(d.yelp_id);
+                });
+            });
+
+
+            document.getElementById('select-native-2').addEventListener('change', function() {
+                refreshBusinessReviews2();
             });
 
         });
@@ -496,7 +651,6 @@
 		 */
 
 
-
         function refreshBusinessReviews(){
 
             var selectedYelpID = document.getElementById('select-native-1').value;
@@ -515,7 +669,7 @@
                     document.getElementById("displayYelpID").innerHTML = "Business ID: " + d.yelp_id;
                     document.getElementById("displayYelpName").innerHTML = "Business Name: " + d.yelp_name;
 
-                    console.log(data.yelp_id);
+                    console.log(d.yelp_id);
 
                 });
 
@@ -538,7 +692,240 @@
             $(window).resize(function(){
                 $("#example-table").tabulator("redraw");
             });
+
+
+
         }
+
+        function refreshBusinessReviews2(){
+			/*
+			 ======== Yelp Mobile =======
+			 */
+
+            var selectedYelpID2 = document.getElementById('select-native-2').value;
+            // var url = 'http://localhost:9292/reviews_by_yelp_id/' + selectedYelpID2;
+            var url = 'https://intense-ravine-90606.herokuapp.com/reviews_by_yelp_id/' + selectedYelpID2;
+
+
+            // Load Selected Business data immediately
+            $.ajax({
+                // url: 'http://localhost:9292/businesses_by_yelp_id/' + selectedYelpID2,
+                url: 'https://intense-ravine-90606.herokuapp.com/businesses_by_yelp_id/' + selectedYelpID2,
+
+                method: 'GET'
+            }).done(function (data) {
+                data.forEach(function (d) {
+                    document.getElementById("displayYelpIDMobile").innerHTML = "Business ID: " + d.yelp_id;
+                    document.getElementById("displayYelpNameMobile").innerHTML = "Business Name: " + d.yelp_name;
+
+                    console.log(d.yelp_id);
+
+                });
+
+            });  // end of loading Business
+
+            var arrayYelpUserName = [];
+            var arrayText = [];
+            var arrayVisionGender = [];
+            var arrayVisionAge = [];
+            var arrayEmotion = [];
+            var arraySentiment = [];
+
+			/* Bootstrap Carousel */
+            $.ajax({
+                url: url,
+                method: 'GET'
+            }).done(function(data) {
+                    // alert("I am Jason ");
+                    // alert("I am carosuel data = " + data["items"]);
+					var i = 0;
+                    var content = '';
+                    var indicatorOL ='';
+                    var indicatorVal = 0;
+                    var itemCounter ='';
+                    var itemCounterNum = 0;
+                    var xIndex = 0;
+
+                    data.forEach( function(d) {
+                        // alert("I am carosuel data = " + data["items"][i].img);
+                        //alert("i is = " + i);
+                        var img = d.yelp_user_image_url;
+                        var userName = d.yelp_user_name;
+                        var captions = d.vision_description_captions;
+
+                        if (i == 0)  {
+                            indicatorOL += '<li class="item1 active"></li>';
+                        }
+                        else {
+                            indicatorVal = parseInt(i) + 1 ;
+                            // alert("indicatorVal = " + indicatorVal);
+                            indicatorOL += '<li class="item' + indicatorVal + '"></li>';
+                        } // end esle
+
+
+                        if (i==0) {
+                            content += '<div class="item active">' + '<img src="' +img+ '" alt="' + userName + '"' + ' width="460" height="345" >' +
+                                '<div class="carousel-caption">' +
+                                '<h3>' + userName + '</h3>' +
+                                '<p>' + captions +  '</p>' +
+                                '</div>' +
+                                '</div>';
+                        }
+                        else {
+                            content += '<div class="item">' + '<img src="' +img+ '" alt="' + userName + '"' + ' width="460" height="345" >' +
+                                '<div class="carousel-caption">' +
+                                '<h3>' + userName + '</h3>' +
+                                '<p>' + captions +  '</p>' +
+                                '</div>' +
+                                '</div>';
+
+                        }  // end else
+
+                        arrayYelpUserName[i] = d.yelp_user_name;
+
+                        /*
+                        alert("i = " + i);
+                        alert("yelp_user_name = " + d.yelp_user_name);
+						alert("arrayYelpUserName = " + arrayYelpUserName[i]);
+						*/
+
+                        arrayText[i] = d.text;
+                        arrayVisionGender[i] = d.vision_gender;
+                        arrayVisionAge[i] = d.vision_age;
+                        arrayEmotion[i] = d.emotion;
+                        arraySentiment[i] = d.sentiment;
+						i++;
+
+
+                    });
+                    // $("#carouselIndicators").html(indicatorOL);
+                    $("#carouselInner").html(content);
+                    //owl.trigger('insertContent.owl',content);
+                    //$('.owl-carousel').trigger('insertContent.owl',content);
+                    // $("#owl-demo").trigger('insertContent.owl',content);
+                    // alert(indicatorOL);
+                    // alert(content);
+
+
+                myTableContent =
+                    '<table id="myTable">' +
+                    '<tr>' +
+                    '<td>' + '<b>Name </b>' + '</td> ' +
+                    '<td>' + arrayYelpUserName[0] + '</td> ' +
+                    '</tr>'  +
+                    '<tr>' +
+                    '<td>' + '<b>Review</b>' + '</td> ' +
+                    '<td>' +  arrayText[0] + '</td> ' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>' + '<b>Gender</b>' + '</td> ' +
+                    '<td>' + arrayVisionGender[0] + '</td> ' +
+                    '</tr>'  +
+                    '<tr>' +
+                    '<td>' + '<b>Age</b>' + '</td> ' +
+                    '<td>' + arrayVisionAge[0] + '</td> ' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>' +  '<b>Emotion</b>' + '</td> ' +
+                    '<td>' +   arrayEmotion[0] + '</td> ' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>' +  '<b>Sentiment</b>' + '</td>' +
+                    '<td>' +  arraySentiment[0] + '</td>' +
+                    '</tr>' +
+                    '</table>';
+
+                //document.getElementById("myTable").innerHTML = myTableContent;
+
+
+
+                document.getElementById("displayTable").innerHTML = myTableContent;
+
+
+            });  // end of ajax
+
+            // enabel Carousel
+            $("#myCarousel").carousel();
+
+
+            // Enable Carousel Controls
+            $(".left").click(function(){
+                $("#myCarousel").carousel("prev");
+            });
+            $(".right").click(function(){
+                $("#myCarousel").carousel("next");
+            });
+
+
+
+            var carousel = $("#myCarousel");
+
+            $('#myCarousel').on('slide.bs.carousel', function (e) {
+                var active = $(e.target).find('.carousel-inner > .item.active');
+                var from = active.index();
+                var next = $(e.relatedTarget);
+                var to = next.index();
+                console.log(from + ' => ' + to);
+
+                // document.getElementById("displayText").innerHTML = from + ' => ' + to;
+                /*
+				document.getElementById("displayTable").innerHTML = "Name = " + arrayYelpUserName[to] + "  " +
+					                                               "Review =  " + arrayText[to] + "  " +
+					                                               "Gender = " + arrayVisionGender[to] + "  " +
+															        "Age = " + arrayVisionAge[to] + "  " +
+                   											        "Emotion =  " + arrayEmotion[to] + "  " +
+                    												"Sentiment = " + arraySentiment[to]
+				*/
+
+                myTableContent =
+                    '<table id="myTable">' +
+                    '<tr>' +
+                    '<td>' + '<b>Name </b>' + '</td> ' +
+                    '<td>' + arrayYelpUserName[to] + '</td> ' +
+                    '</tr>'  +
+                    '<tr>' +
+                    '<td>' + '<b>Review</b>' + '</td> ' +
+                    '<td>' +  arrayText[to] + '</td> ' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>' + '<b>Gender</b>' + '</td> ' +
+                    '<td>' + arrayVisionGender[to] + '</td> ' +
+                    '</tr>'  +
+                    '<tr>' +
+                    '<td>' + '<b>Age</b>' + '</td> ' +
+                    '<td>' + arrayVisionAge[to] + '</td> ' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>' +  '<b>Emotion</b>' + '</td> ' +
+                    '<td>' +   arrayEmotion[to] + '</td> ' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td>' +  '<b>Sentiment</b>' + '</td>' +
+                    '<td>' +  arraySentiment[to] + '</td>' +
+                    '</tr>' +
+                    '</table>';
+
+
+                //document.getElementById("myTable").innerHTML = myTableContent;
+
+
+
+                document.getElementById("displayTable").innerHTML = myTableContent;
+
+
+            });
+
+
+			/* End Bootstrap Carousel */
+
+
+			/*
+			 ======== End Yelp Mobile =======
+			 */
+
+        }
+
+
 
 
 	</script>
